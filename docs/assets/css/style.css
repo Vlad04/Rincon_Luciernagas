@@ -1557,3 +1557,108 @@ button {
         transform: translateY(-8px) rotate(-4deg);
     }
 }
+
+/* Solo celular: centra la luciérnaga dentro del frasco del logo */
+@media (max-width: 560px) {
+    .brand-jar .jar-firefly {
+        inset: 10px 0 0;
+        font-size: 21px;
+        line-height: 1;
+    }
+
+    .brand-jar .jar-glow {
+        inset: 14px 8px 8px;
+    }
+}
+
+/* Solo celular: beneficios y materias en cuadrícula 2 x 2 */
+@media (max-width: 560px) {
+
+    /* ── Beneficios ── */
+    .benefits {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0;
+        padding: 10px;
+        border-radius: 22px;
+    }
+
+    .benefits article {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 9px;
+        min-height: 158px;
+        padding: 14px 9px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .14);
+    }
+
+    .benefits article:nth-child(odd) {
+        border-right: 1px solid rgba(255, 255, 255, .14);
+    }
+
+    .benefits article:nth-child(3),
+    .benefits article:nth-child(4) {
+        border-bottom: 0;
+    }
+
+    .benefit-icon {
+        flex: 0 0 42px;
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        font-size: 19px;
+    }
+
+    .benefits h2 {
+        margin-bottom: 4px;
+        font-size: 12px;
+        line-height: 1.2;
+    }
+
+    .benefits p {
+        font-size: 10px;
+        line-height: 1.45;
+    }
+
+    /* ── Materias ── */
+    .class-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .class-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        min-height: 205px;
+        padding: 17px 14px;
+        border-radius: 18px;
+    }
+
+    .class-icon {
+        flex: 0 0 43px;
+        width: 43px;
+        height: 43px;
+        border-radius: 13px;
+        font-size: 17px;
+    }
+
+    .english {
+        font-size: 10px;
+    }
+
+    .class-card h3 {
+        margin: 0 0 6px;
+        font-size: 14px;
+    }
+
+    .class-card p {
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    .class-card a {
+        margin-top: 10px;
+        font-size: 10px;
+    }
+}
