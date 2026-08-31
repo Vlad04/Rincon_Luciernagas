@@ -26,18 +26,53 @@ document.querySelectorAll('.main-nav a').forEach(link => link.addEventListener('
 }));
 
 const fireflyField = document.querySelector('.fireflies');
-for (let index = 0; index < 22; index += 1) {
-  const dot = document.createElement('i');
-  dot.className = 'firefly';
-  dot.style.left = `${8 + Math.random() * 88}%`;
-  dot.style.top = `${18 + Math.random() * 72}%`;
-  dot.style.setProperty('--x', `${-45 + Math.random() * 90}px`);
-  dot.style.setProperty('--y', `${-55 + Math.random() * 110}px`);
-  dot.style.setProperty('--duration', `${3 + Math.random() * 4}s`);
-  dot.style.setProperty('--delay', `${Math.random() * -5}s`);
-  fireflyField?.appendChild(dot);
+
+function obtenerHoraMexico() {
+  const hora = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Mexico_City',
+    hour: '2-digit',
+    hourCycle: 'h23'
+  }).formatToParts(new Date()).find(part => part.type === 'hour');
+
+  return Number(hora?.value ?? 12);
 }
 
+function crearParticulas(esDeDia) {
+  if (!fireflyField) return;
+
+  fireflyField.innerHTML = '';
+
+  const total = esDeDia ? 15 : 22;
+
+  for (let index = 0; index < total; index += 1) {
+    const dot = document.createElement('i');
+
+    dot.className = esDeDia ? 'sun-speck' : 'firefly';
+    dot.style.left = `${8 + Math.random() * 88}%`;
+    dot.style.top = `${18 + Math.random() * 72}%`;
+    dot.style.setProperty('--x', `${-45 + Math.random() * 90}px`);
+    dot.style.setProperty('--y', `${-55 + Math.random() * 110}px`);
+    dot.style.setProperty('--duration', `${3 + Math.random() * 4}s`);
+    dot.style.setProperty('--delay', `${Math.random() * -5}s`);
+
+    fireflyField.appendChild(dot);
+  }
+}
+
+function aplicarModoDelDia() {
+  const hora = obtenerHoraMexico();
+  const esDeDia = hora >= 7 && hora < 19;
+
+  document.body.classList.toggle('day-mode', esDeDia);
+  document.body.classList.toggle('night-mode', !esDeDia);
+
+  crearParticulas(esDeDia);
+}
+
+aplicarModoDelDia();
+
+/* Revisa cada minuto por si la página sigue abierta al cambiar de horario */
+setInterval(aplicarModoDelDia, 60000);
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {

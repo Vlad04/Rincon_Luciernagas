@@ -2063,3 +2063,91 @@ button {
     font-size: 20px;
     line-height: 1;
 }
+
+/* Escena nocturna por defecto */
+.hero-image {
+    background-image: url('../images/hero-luciernagas.png');
+    transition: background-image .45s ease, filter .45s ease;
+}
+
+/* Escena diurna: imagen completamente diferente */
+body.day-mode .hero-image {
+    background-image: url('../images/hero-luciernagas-dia.png');
+    animation: day-hero-breathe 18s ease-in-out infinite alternate;
+}
+
+body.day-mode .hero-shade {
+    background:
+        linear-gradient(90deg, rgba(8, 44, 51, .84) 0%, rgba(15, 77, 77, .55) 40%, rgba(255, 255, 255, .06) 100%),
+        linear-gradient(0deg, rgba(8, 49, 47, .34), transparent 60%);
+}
+
+/* En el día hay destellos suaves; de noche, luciérnagas */
+body.day-mode .firefly {
+    display: none;
+}
+
+body.night-mode .sun-speck {
+    display: none;
+}
+
+.sun-speck {
+    position: absolute;
+    z-index: 3;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .95);
+    box-shadow: 0 0 9px 2px rgba(255, 234, 157, .65);
+    animation: sun-dust var(--duration) ease-in-out infinite alternate;
+    animation-delay: var(--delay);
+}
+
+@keyframes day-hero-breathe {
+    to {
+        transform: scale(1.03) translateX(-6px);
+    }
+}
+
+@keyframes sun-dust {
+    from {
+        opacity: .2;
+        transform: translate(0, 0) scale(.7);
+    }
+
+    to {
+        opacity: .95;
+        transform: translate(var(--x), var(--y)) scale(1.2);
+    }
+}
+
+/* Loader con aspecto de mañana */
+body.day-mode .intro-loader {
+    background:
+        radial-gradient(circle at 50% 35%, rgba(255, 234, 163, .8), transparent 15%),
+        linear-gradient(135deg, #b9dfdc, #f9e7c2);
+}
+
+body.day-mode .intro-loader::before {
+    content: "☀";
+    position: absolute;
+    top: 16%;
+    left: 50%;
+    color: #f5b843;
+    font-size: 70px;
+    filter: drop-shadow(0 0 16px rgba(255, 194, 72, .7));
+    transform: translateX(-50%);
+}
+
+body.day-mode .intro-loader .intro-star {
+    display: none;
+}
+
+body.day-mode .intro-loader strong {
+    color: #21434a;
+    text-shadow: none;
+}
+
+body.day-mode .intro-loader p {
+    color: #44666a;
+}
