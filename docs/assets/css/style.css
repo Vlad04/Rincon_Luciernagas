@@ -2031,3 +2031,35 @@ button {
         bottom: 7%;
     }
 }
+
+/* Corazón y segunda tarjeta del hero */
+.hero-content .note-icon-heart {
+    font-size: 24px;
+    color: #ef83ba;
+    background:
+        radial-gradient(circle at 35% 28%, #fff 0 8%, transparent 9%),
+        linear-gradient(145deg, #fff8d5, #ffe6af);
+    text-shadow: 0 2px 8px rgba(231, 104, 164, .36);
+}
+
+.hero-note-secondary {
+    margin-top: 10px !important;
+    background: linear-gradient(145deg, rgba(55, 51, 104, .68), rgba(24, 29, 66, .78)) !important;
+    border-color: rgba(199, 159, 255, .28) !important;
+}
+
+.hero-note-secondary .note-icon-spark {
+    color: #fff5bd;
+    background: linear-gradient(145deg, #a86bea, #6c46bd);
+    text-shadow: 0 0 12px rgba(255, 238, 138, .75);
+}
+
+.hero-note-secondary .note-heart {
+    color: #d9b1ff;
+}
+
+.social-rail i {
+    display: block;
+    font-size: 20px;
+    line-height: 1;
+}

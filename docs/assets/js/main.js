@@ -9,6 +9,8 @@ window.addEventListener('load', () => {
     }, 850);
   }, 3500);
 });
+
+
 const menuButton = document.querySelector('.menu-toggle');
 const menu = document.querySelector('.main-nav');
 
