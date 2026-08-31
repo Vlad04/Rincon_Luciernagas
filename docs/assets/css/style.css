@@ -2129,7 +2129,7 @@ body.day-mode .intro-loader {
 }
 
 body.day-mode .intro-loader::before {
-    content: "☀";
+    /*content: "☀";*/
     position: absolute;
     top: 16%;
     left: 50%;
