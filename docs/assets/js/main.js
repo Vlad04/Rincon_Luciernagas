@@ -156,3 +156,215 @@ const enlaceWhatsApp = esDispositivoMovil
 document.querySelectorAll('.whatsapp-link').forEach(enlace => {
   enlace.href = enlaceWhatsApp;
 });
+
+/* ───────────── Modal de agenda ───────────── */
+
+const bookingModal = document.getElementById('agenda-modal');
+const bookingForm = document.getElementById('booking-form');
+const bookingClose = document.querySelector('.booking-modal-close');
+const bookingOpenButtons = document.querySelectorAll('.open-booking-modal');
+
+const serviceType = document.getElementById('service-type');
+const supportType = document.getElementById('support-type');
+
+const regularizationFields = document.getElementById('regularization-fields');
+const subjectSelector = document.getElementById('subject-selector');
+const regularizationReason = document.getElementById('regularization-reason');
+
+const creativeFields = document.getElementById('creative-fields');
+const creativeQuestion = document.getElementById('creative-question');
+const creativeInterest = document.getElementById('creative-interest');
+
+const subjectCheckboxes = [
+  ...document.querySelectorAll('input[name="materias"]')
+];
+
+function abrirModalAgenda(event) {
+  event.preventDefault();
+
+  if (!bookingModal?.open) {
+    bookingModal.showModal();
+    document.body.classList.add('modal-open');
+  }
+}
+
+function resetearModalAgenda() {
+  /* Limpia todos los inputs, selects y textareas */
+  bookingForm?.reset();
+
+  /* Oculta nuevamente los campos condicionales */
+  regularizationFields.hidden = true;
+  subjectSelector.hidden = true;
+  creativeFields.hidden = true;
+
+  /* Elimina obligatoriedad de campos condicionales */
+  supportType.required = false;
+  regularizationReason.required = false;
+  creativeInterest.required = false;
+
+  /* Limpia las materias y posibles mensajes de error */
+  subjectCheckboxes.forEach(checkbox => {
+    checkbox.checked = false;
+    checkbox.setCustomValidity('');
+  });
+
+  /* Restaura los textos de Arte y Programación */
+  creativeQuestion.textContent = '¿Qué le gustaría aprender?';
+  creativeInterest.placeholder =
+    'Cuéntanos un poco sobre lo que busca...';
+}
+
+function cerrarModalAgenda() {
+  if (!bookingModal?.open) return;
+
+  bookingModal.classList.add('is-closing');
+
+  setTimeout(() => {
+    bookingModal.close();
+    bookingModal.classList.remove('is-closing');
+    document.body.classList.remove('modal-open');
+
+    /* Deja el formulario listo para comenzar nuevamente */
+    resetearModalAgenda();
+  }, 240);
+}
+
+bookingOpenButtons.forEach(button => {
+  button.addEventListener('click', abrirModalAgenda);
+});
+
+bookingClose?.addEventListener('click', cerrarModalAgenda);
+
+bookingModal?.addEventListener('click', event => {
+  if (event.target === bookingModal) {
+    cerrarModalAgenda();
+  }
+});
+
+bookingModal?.addEventListener('cancel', event => {
+  event.preventDefault();
+  cerrarModalAgenda();
+});
+
+serviceType?.addEventListener('change', () => {
+  const servicio = serviceType.value;
+  const esRegularizacion = servicio === 'Regularización';
+  const esCreativo =
+    servicio === 'Arte' || servicio === 'Programación básica';
+
+  regularizationFields.hidden = !esRegularizacion;
+  creativeFields.hidden = !esCreativo;
+
+  supportType.required = esRegularizacion;
+  regularizationReason.required = false;
+  creativeInterest.required = esCreativo;
+
+  if (!esRegularizacion) {
+    supportType.value = '';
+    subjectSelector.hidden = true;
+    regularizationReason.value = '';
+
+    subjectCheckboxes.forEach(checkbox => {
+      checkbox.checked = false;
+      checkbox.setCustomValidity('');
+    });
+  }
+
+  if (esCreativo) {
+    creativeQuestion.textContent =
+      servicio === 'Arte'
+        ? '¿Qué le gustaría aprender o crear?'
+        : '¿Qué le gustaría aprender de programación?';
+
+    creativeInterest.placeholder =
+      servicio === 'Arte'
+        ? 'Ej. dibujo, acuarela, pintura o creación de personajes...'
+        : 'Ej. lógica, computación o sus primeros proyectos digitales...';
+  } else {
+    creativeInterest.value = '';
+  }
+});
+
+supportType?.addEventListener('change', () => {
+  const necesitaMaterias =
+    supportType.value === 'Materias específicas';
+
+  subjectSelector.hidden = !necesitaMaterias;
+
+  if (!necesitaMaterias) {
+    subjectCheckboxes.forEach(checkbox => {
+      checkbox.checked = false;
+      checkbox.setCustomValidity('');
+    });
+  }
+});
+
+subjectCheckboxes.forEach(checkbox => {
+  checkbox.addEventListener('change', () => {
+    subjectCheckboxes.forEach(item => {
+      item.setCustomValidity('');
+    });
+  });
+});
+
+bookingForm?.addEventListener('submit', event => {
+  event.preventDefault();
+
+  const edad = document.getElementById('student-age').value;
+  const servicio = serviceType.value;
+  const tipoApoyo = supportType.value;
+
+  const materias = subjectCheckboxes
+    .filter(checkbox => checkbox.checked)
+    .map(checkbox => checkbox.value);
+
+  if (
+    servicio === 'Regularización' &&
+    tipoApoyo === 'Materias específicas' &&
+    materias.length === 0
+  ) {
+    subjectCheckboxes[0].setCustomValidity(
+      'Selecciona al menos una materia.'
+    );
+
+    subjectCheckboxes[0].reportValidity();
+    return;
+  }
+
+  const lineas = [
+    '✨ Hola, maestra Andrea. Quiero solicitar información para una clase.',
+    '',
+    `Edad del estudiante: ${edad} años`,
+    `Tipo de clase: ${servicio}`
+  ];
+
+  if (servicio === 'Regularización') {
+    lineas.push(`Tipo de apoyo: ${tipoApoyo}`);
+
+    if (materias.length > 0) {
+      lineas.push(`Materias: ${materias.join(', ')}`);
+    }
+
+    const motivo = regularizationReason.value.trim();
+
+    if (motivo) {
+      lineas.push(`Motivo de la regularización: ${motivo}`);
+    }
+  } else {
+    lineas.push(
+      `Interés principal: ${creativeInterest.value.trim()}`
+    );
+  }
+
+  lineas.push('', '¿Podría compartirme horarios y disponibilidad?');
+
+  const mensajeAgenda = lineas.join('\n');
+
+  const enlaceAgenda = esDispositivoMovil
+    ? `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensajeAgenda)}`
+    : `https://web.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensajeAgenda)}`;
+
+  window.open(enlaceAgenda, '_blank', 'noopener,noreferrer');
+
+  cerrarModalAgenda();
+});

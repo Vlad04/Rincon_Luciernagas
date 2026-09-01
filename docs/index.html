@@ -62,7 +62,9 @@
         <a href="#contacto">Contacto</a>
       </nav>
 
-      <a class="nav-cta" href="#contacto"><span aria-hidden="true">✦</span> Agenda tu clase</a>
+      <a class="nav-cta open-booking-modal" href="#agenda-modal">
+        <span aria-hidden="true">✦</span> Agenda tu clase
+      </a>
     </div>
   </header>
 
@@ -83,9 +85,14 @@
             <span class="play" aria-hidden="true">&#9654;&#65038;</span>
             Conoce a Andrea
           </a>
-          <div class="trust-line"><span class="avatars"
-              aria-hidden="true"><b>A</b><b>M</b><b>J</b></span><span><strong>Acompañamiento cercano</strong><small>Para
-                primaria y secundaria</small></span></div>
+          <!--<div class="trust-line mascot-trust">
+            <img class="lumi-mascot" src="assets/images/lumi-mascota.png" alt="" aria-hidden="true">
+
+            <span class="lumi-copy">
+              <strong>Hola, soy Lumi</strong>
+              <small>Acompañamiento cercano</small>
+            </span>
+          </div>-->
         </div>
         <div class="hero-note" aria-label="Nuestra filosofía">
           <span class="note-icon note-icon-heart" aria-hidden="true">♡</span>
@@ -121,7 +128,7 @@
       <article><span class="benefit-icon lime">▣</span>
         <div>
           <h2>Apoyo en tus materias</h2>
-          <p>Matemáticas, Español, Ciencias, Inglés y más.</p>
+          <p>Matemáticas, Español, Ciencias, Arte y más.</p>
         </div>
       </article>
       <article><span class="benefit-icon pink">♥</span>
@@ -145,30 +152,61 @@
         <p>Regularización académica para niños y jóvenes de primaria y secundaria.</p>
       </div>
       <div class="class-grid">
-        <article class="class-card reveal"><span class="class-icon math">▦</span>
+
+        <article class="class-card reveal">
+          <span class="class-icon math" aria-hidden="true">▦</span>
           <div>
             <h3>Matemáticas</h3>
-            <p>Desde lo básico hasta lo que necesitas dominar.</p><a href="#contacto">Saber más <span>→</span></a>
+            <p>Fortalece las bases, resuelve dudas y aprende paso a paso.</p>
+            <a href="#contacto">Saber más <span>→</span></a>
           </div>
         </article>
-        <article class="class-card reveal"><span class="class-icon spanish">▤</span>
+
+        <article class="class-card reveal">
+          <span class="class-icon spanish" aria-hidden="true">▤</span>
           <div>
             <h3>Español</h3>
-            <p>Comprensión, redacción, ortografía y más.</p><a href="#contacto">Saber más <span>→</span></a>
+            <p>Comprensión lectora, escritura, redacción y ortografía.</p>
+            <a href="#contacto">Saber más <span>→</span></a>
           </div>
         </article>
-        <article class="class-card reveal"><span class="class-icon science">⚗</span>
+
+        <article class="class-card reveal">
+          <span class="class-icon science" aria-hidden="true">⚗</span>
           <div>
             <h3>Ciencias</h3>
-            <p>Entiende el mundo que te rodea de manera divertida.</p><a href="#contacto">Saber más <span>→</span></a>
+            <p>Descubre el mundo mediante actividades claras y divertidas.</p>
+            <a href="#contacto">Saber más <span>→</span></a>
           </div>
         </article>
-        <article class="class-card reveal"><span class="class-icon english">Hello!</span>
+
+        <article class="class-card reveal">
+          <span class="class-icon arts" aria-hidden="true">✎</span>
           <div>
-            <h3>Inglés</h3>
-            <p>Aprende de forma práctica, dinámica y segura.</p><a href="#contacto">Saber más <span>→</span></a>
+            <h3>Arte</h3>
+            <p>Explora el dibujo, la pintura y la creatividad con proyectos prácticos.</p>
+            <a href="#contacto">Saber más <span>→</span></a>
           </div>
         </article>
+
+        <article class="class-card reveal">
+          <span class="class-icon coding" aria-hidden="true">&lt;/&gt;</span>
+          <div>
+            <h3>Programación básica</h3>
+            <p>Desarrolla el pensamiento lógico y crea tus primeros proyectos digitales.</p>
+            <a href="#contacto">Saber más <span>→</span></a>
+          </div>
+        </article>
+
+        <article class="class-card reveal">
+          <span class="class-icon social-studies" aria-hidden="true">⌖</span>
+          <div>
+            <h3>Historia y Geografía</h3>
+            <p>Conoce culturas, acontecimientos y lugares de una manera cercana.</p>
+            <a href="#contacto">Saber más <span>→</span></a>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -196,25 +234,32 @@
         <h2>Hola, soy Andrea</h2>
 
         <p>
-          Soy <strong>Andrea Solano Romero</strong>, maestra comprometida con crear
-          un espacio cercano, claro y seguro para que cada estudiante descubra
-          que sí puede aprender.
+          Soy <strong>Andrea Solano Romero</strong>, profesional de la educación
+          con más de 10 años de experiencia acompañando a niños y adolescentes.
+          Creo experiencias de aprendizaje cercanas, creativas y adaptadas a las
+          necesidades de cada estudiante.
         </p>
 
         <div class="teacher-experience">
           <article>
             <span>✦</span>
             <div>
-              <strong>Experiencia</strong>
-              <p>Escribe aquí los años de experiencia, grados o materias que Andrea ha impartido.</p>
+              <strong>Más de 10 años de experiencia</strong>
+              <p>
+                Docente de primaria con experiencia en todos los grados, seguimiento
+                académico y socioemocional. Acompañamiento cercano a las familias.
+              </p>
             </div>
           </article>
 
           <article>
             <span>◇</span>
             <div>
-              <strong>Formación</strong>
-              <p>Escribe aquí su licenciatura, certificaciones o preparación docente.</p>
+              <strong>Formación especializada</strong>
+              <p>
+                Maestría en Educación y Docencia y Licenciatura en Educación Primaria,
+                con preparación en innovación educativa, tecnología, animación y artes.
+              </p>
             </div>
           </article>
         </div>
@@ -302,6 +347,124 @@
       </a>
     </section>
   </main>
+
+  <dialog class="booking-modal" id="agenda-modal" aria-labelledby="agenda-modal-title">
+    <div class="booking-modal-card">
+
+      <button class="booking-modal-close" type="button" aria-label="Cerrar formulario">
+        ×
+      </button>
+
+      <div class="lumi-welcome">
+        <img class="booking-lumi" src="assets/images/lumi-mascota.png" alt="Lumi, la luciérnaga guía">
+
+        <div class="lumi-bubble">
+          <strong>¡Hola, soy Lumi!</strong>
+          <span>Comencemos juntos a brillar ✦</span>
+        </div>
+      </div>
+
+      <div class="booking-heading">
+        <span class="tiny-label">ENCONTREMOS LA CLASE IDEAL</span>
+        <h2 id="agenda-modal-title">Cuéntanos qué estás buscando</h2>
+        <p>Solo necesitamos algunos datos para orientar mejor tu primera clase.</p>
+      </div>
+
+      <form class="booking-form" id="booking-form">
+
+        <div class="booking-form-grid">
+          <label class="booking-field">
+            <span>Edad del estudiante</span>
+            <input id="student-age" name="edad" type="number" inputmode="numeric" min="1" max="99" step="1"
+              placeholder="Ej. 9" required>
+          </label>
+
+          <label class="booking-field">
+            <span>¿Qué tipo de clase buscas?</span>
+            <select id="service-type" name="servicio" required>
+              <option value="">Selecciona una opción</option>
+              <option value="Regularización">Regularización</option>
+              <option value="Arte">Arte</option>
+              <option value="Programación básica">Programación básica</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- Aparece únicamente al seleccionar Regularización -->
+        <div class="booking-conditional" id="regularization-fields" hidden>
+          <label class="booking-field">
+            <span>¿Qué tipo de apoyo necesita?</span>
+            <select id="support-type" name="tipoApoyo">
+              <option value="">Selecciona una opción</option>
+              <option value="Materias específicas">Materias específicas</option>
+              <option value="Clases personalizadas">Clases personalizadas</option>
+            </select>
+          </label>
+
+          <!-- Aparece únicamente al elegir Materias específicas -->
+          <fieldset class="subject-selector" id="subject-selector" hidden>
+            <legend>Selecciona las materias</legend>
+
+            <div class="subject-options">
+              <label>
+                <input type="checkbox" name="materias" value="Matemáticas">
+                <span>Matemáticas</span>
+              </label>
+
+              <label>
+                <input type="checkbox" name="materias" value="Español">
+                <span>Español</span>
+              </label>
+
+              <label>
+                <input type="checkbox" name="materias" value="Ciencias">
+                <span>Ciencias</span>
+              </label>
+
+              <label>
+                <input type="checkbox" name="materias" value="Historia y Geografía">
+                <span>Historia y Geografía</span>
+              </label>
+
+              <label>
+                <input type="checkbox" name="materias" value="Arte">
+                <span>Arte</span>
+              </label>
+
+              <label>
+                <input type="checkbox" name="materias" value="Programación básica">
+                <span>Programación básica</span>
+              </label>
+
+            </div>
+          </fieldset>
+
+          <label class="booking-field">
+            <span>Motivo de la regularización</span>
+            <textarea id="regularization-reason" name="motivo" rows="3"
+              placeholder="Cuéntanos brevemente qué temas necesita reforzar..."></textarea>
+          </label>
+        </div>
+
+        <div class="booking-conditional" id="creative-fields" hidden>
+          <label class="booking-field">
+            <span id="creative-question">¿Qué le gustaría aprender?</span>
+            <textarea id="creative-interest" name="interes" rows="3"
+              placeholder="Cuéntanos un poco sobre lo que busca..."></textarea>
+          </label>
+        </div>
+
+        <button class="booking-submit" type="submit">
+          <span aria-hidden="true">✦</span>
+          Continuar por WhatsApp
+        </button>
+
+        <small class="booking-privacy">
+          Andrea recibirá tus respuestas para ofrecerte una atención personalizada.
+        </small>
+      </form>
+    </div>
+  </dialog>
 
   <div class="social-rail" aria-label="Redes sociales">
     <a class="wa whatsapp-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
