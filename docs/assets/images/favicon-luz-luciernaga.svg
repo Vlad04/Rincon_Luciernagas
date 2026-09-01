@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="background" cx="38%" cy="30%" r="72%">
+      <stop stop-color="#245255"/>
+      <stop offset="1" stop-color="#09242d"/>
+    </radialGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop stop-color="#fffde9"/>
+      <stop offset=".24" stop-color="#ffe77d" stop-opacity=".95"/>
+      <stop offset=".58" stop-color="#efbd42" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#efbd42" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-90%" y="-90%" width="280%" height="280%">
+      <feGaussianBlur stdDeviation="3.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <circle cx="32" cy="32" r="30" fill="url(#background)" stroke="#e6bd58" stroke-width="2"/>
+  <circle cx="32" cy="32" r="23" fill="url(#halo)"/>
+  <path d="M32 14c2 9.6 6.4 14 16 18-9.6 4-14 8.4-16 18-2-9.6-6.4-14-16-18 9.6-4 14-8.4 16-18Z"
+        fill="#fffef4" filter="url(#glow)"/>
+  <circle cx="47" cy="18" r="1.5" fill="#ffe77d" opacity=".9"/>
+  <circle cx="18" cy="47" r="1.1" fill="#ffe77d" opacity=".65"/>
+</svg>
