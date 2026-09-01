@@ -13,6 +13,8 @@ window.addEventListener('load', () => {
 
 const menuButton = document.querySelector('.menu-toggle');
 const menu = document.querySelector('.main-nav');
+const siteHeader = document.querySelector('.site-header');
+const heroSection = document.querySelector('.hero');
 
 menuButton?.addEventListener('click', () => {
   const open = menu.classList.toggle('open');
@@ -86,6 +88,8 @@ document.querySelectorAll('.reveal').forEach(item => revealObserver.observe(item
 const sections = [...document.querySelectorAll('main section[id], header[id]')];
 const navLinks = [...document.querySelectorAll('.main-nav a')];
 window.addEventListener('scroll', () => {
+  const yaPasoHero = window.scrollY > (heroSection?.offsetHeight ?? 0) - 120;
+  siteHeader?.classList.toggle('is-sticky', yaPasoHero);
   let current = 'inicio';
   sections.forEach(section => {
     if (window.scrollY >= section.offsetTop - 150) current = section.id;
