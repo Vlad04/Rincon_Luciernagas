@@ -140,3 +140,19 @@ window.addEventListener('scroll', actualizarMenuActivo, { passive: true });
 /* También define el enlace correcto al cargar la página */
 actualizarMenuActivo();
 document.getElementById('year').textContent = new Date().getFullYear();
+
+const mensajeWhatsApp =
+  'Hola, maestra Andrea. Vi la página de El rincón de las luciérnagas y me gustaría recibir información sobre las clases.';
+
+const numeroWhatsApp = '523321901290';
+
+const esDispositivoMovil =
+  /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+const enlaceWhatsApp = esDispositivoMovil
+  ? `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensajeWhatsApp)}`
+  : `https://web.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensajeWhatsApp)}`;
+
+document.querySelectorAll('.whatsapp-link').forEach(enlace => {
+  enlace.href = enlaceWhatsApp;
+});
