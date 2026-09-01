@@ -2237,3 +2237,21 @@ body:has(#intro-loader) .social-rail {
         background-size: cover;
     }
 }
+
+/* Icono de reproducción consistente en computadora y celular */
+.button-ghost .play {
+    display: inline-grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    padding-left: 2px;
+    border: 1.5px solid currentColor;
+    border-radius: 50%;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    line-height: 1;
+    background: transparent;
+}
