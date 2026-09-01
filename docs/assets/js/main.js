@@ -85,16 +85,58 @@ const revealObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.14 });
 document.querySelectorAll('.reveal').forEach(item => revealObserver.observe(item));
 
-const sections = [...document.querySelectorAll('main section[id], header[id]')];
 const navLinks = [...document.querySelectorAll('.main-nav a')];
-window.addEventListener('scroll', () => {
+
+const sections = navLinks
+  .map(link => document.querySelector(link.getAttribute('href')))
+  .filter(Boolean);
+
+function actualizarMenuActivo() {
   const yaPasoHero = window.scrollY > (heroSection?.offsetHeight ?? 0) - 120;
   siteHeader?.classList.toggle('is-sticky', yaPasoHero);
-  let current = 'inicio';
-  sections.forEach(section => {
-    if (window.scrollY >= section.offsetTop - 150) current = section.id;
-  });
-  navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${current}`));
-}, { passive: true });
 
+  let seccionActual = 'hero';
+  let mayorParteVisible = 0;
+
+  sections.forEach(section => {
+    const posicion = section.getBoundingClientRect();
+
+    const parteVisible = Math.max(
+      0,
+      Math.min(posicion.bottom, window.innerHeight) - Math.max(posicion.top, 0)
+    );
+
+    if (parteVisible > mayorParteVisible) {
+      mayorParteVisible = parteVisible;
+      seccionActual = section.id;
+    }
+  });
+
+  /* Contacto tiene prioridad cuando su tarjeta ya está en pantalla */
+  const contacto = document.getElementById('contacto');
+
+  if (contacto) {
+    const posicionContacto = contacto.getBoundingClientRect();
+
+    const contactoVisible =
+      posicionContacto.top < window.innerHeight * 0.78 &&
+      posicionContacto.bottom > 120;
+
+    if (contactoVisible) {
+      seccionActual = 'contacto';
+    }
+  }
+
+  navLinks.forEach(link => {
+    link.classList.toggle(
+      'active',
+      link.getAttribute('href') === `#${seccionActual}`
+    );
+  });
+}
+
+window.addEventListener('scroll', actualizarMenuActivo, { passive: true });
+
+/* También define el enlace correcto al cargar la página */
+actualizarMenuActivo();
 document.getElementById('year').textContent = new Date().getFullYear();

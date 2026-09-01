@@ -2222,3 +2222,18 @@ body:has(#intro-loader) .social-rail {
         transform-origin: left center;
     }
 }
+
+/* Imágenes verticales exclusivas para celular */
+@media (max-width: 820px) {
+    body.day-mode .hero-image {
+        background-image: url('../images/hero-luciernagas-dia-mobile.png');
+        background-position: center center;
+        background-size: cover;
+    }
+
+    body.night-mode .hero-image {
+        background-image: url('../images/hero-luciernagas-noche-mobile.png');
+        background-position: center center;
+        background-size: cover;
+    }
+}
