@@ -2825,3 +2825,156 @@ body.modal-open {
         animation: none;
     }
 }
+
+/* El botón de agenda dentro del hero solo existe visualmente en celular */
+.mobile-agenda-cta {
+    display: none;
+}
+
+@media (max-width: 820px) {
+    .mobile-agenda-cta {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 11px;
+        width: 100%;
+        min-height: 58px;
+        margin-top: 0;
+        border: 1px solid rgba(255, 218, 247, .45);
+
+        border-radius: 999px;
+        color: #fff;
+
+        background:
+            linear-gradient(135deg, #e982c2 0%, #c469dc 48%, #8c61dc 100%);
+        box-shadow:
+            0 13px 30px rgba(159, 80, 202, .3),
+            inset 0 1px 0 rgba(255, 255, 255, .3);
+        font-weight: 900;
+        overflow: hidden;
+    }
+
+    .mobile-agenda-cta::before {
+        content: "";
+        position: absolute;
+        top: -60%;
+        left: -35%;
+        width: 28%;
+        height: 220%;
+        background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, .7),
+                transparent);
+        transform: rotate(18deg);
+        animation: agenda-shine 3.8s ease-in-out infinite;
+    }
+
+    .mobile-agenda-cta .agenda-glow {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border: 1px solid rgba(255, 255, 255, .5);
+        border-radius: 50%;
+        color: #fff8d5;
+        background: rgba(75, 36, 115, .3);
+        box-shadow:
+            0 0 0 5px rgba(255, 255, 255, .08),
+            0 0 16px rgba(255, 218, 248, .48);
+        animation: agenda-glow 2s ease-in-out infinite;
+    }
+
+    .mobile-agenda-cta>span {
+        position: relative;
+        z-index: 1;
+    }
+
+    .mobile-agenda-cta .agenda-arrow {
+        margin-left: 2px;
+        font-size: 18px;
+        transition: transform .2s ease;
+    }
+
+    .mobile-agenda-cta:active {
+        transform: scale(.98);
+    }
+
+    .mobile-agenda-cta:active .agenda-arrow {
+        transform: translateX(4px);
+    }
+
+    /* Oculta solamente la segunda tarjeta para recuperar espacio */
+    .hero-note-secondary {
+        display: none !important;
+    }
+}
+
+@keyframes agenda-shine {
+
+    0%,
+    58% {
+        left: -35%;
+    }
+
+    82%,
+    100% {
+        left: 125%;
+    }
+}
+
+@keyframes agenda-glow {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow:
+            0 0 0 5px rgba(255, 255, 255, .08),
+            0 0 12px rgba(255, 218, 248, .4);
+    }
+
+    50% {
+        transform: scale(1.08);
+        box-shadow:
+            0 0 0 7px rgba(255, 255, 255, .1),
+            0 0 21px rgba(255, 218, 248, .7);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .mobile-agenda-cta::before,
+    .mobile-agenda-cta .agenda-glow {
+        animation: none;
+    }
+}
+
+/* Alineación uniforme de los tres botones del hero en celular */
+@media (max-width: 820px) {
+    .hero-actions .button {
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr) 34px;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        min-height: 58px;
+        padding: 10px 18px;
+        box-sizing: border-box;
+        font-size: 15px;
+        line-height: 1.2;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    .hero-actions .button> :first-child {
+        justify-self: center;
+    }
+
+    .hero-actions .button .agenda-arrow {
+        justify-self: center;
+        margin: 0;
+        text-align: center;
+    }
+}
